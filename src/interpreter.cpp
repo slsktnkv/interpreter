@@ -13,7 +13,7 @@ void Interpreter::Evaluate(const std::string& line) {
         if (namespace_.contains(command.var)) {
             output_ << namespace_[command.var].ToString() << std::endl;
         } else {
-            throw std::logic_error("Variable not found: " + command.var);
+            throw std::invalid_argument("Unknown variable: " + command.var);
         }
     }
     if (command.type == Command::Type::Set) {
@@ -23,7 +23,7 @@ void Interpreter::Evaluate(const std::string& line) {
         if (namespace_.contains(command.var)) {
             namespace_[command.var].Add(command.operand);
         } else {
-            throw std::logic_error("Variable not found: " + command.var);
+            throw std::invalid_argument("Unknown variable: " + command.var);
         }
     }
 }
