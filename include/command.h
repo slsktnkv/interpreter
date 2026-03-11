@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "integer.h"
+#include "value.h"
 
 struct Command {
     enum class Type {
@@ -12,5 +12,5 @@ struct Command {
     };
     Type type;
     std::string var;
-    Integer operand;
+    Value* operand;
 };

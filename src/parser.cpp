@@ -3,10 +3,26 @@
 #include <charconv>
 #include <stdexcept>
 
+#include "integer.h"
+#include "mystring.h"
+
+Integer MakeInteger(std::string_view operand) {
+    int result{};
+    auto [ptr, ec] = std::from_chars(operand.data(), operand.data() + operand.size(), result);
+    if (ec != std::errc()) {
+        throw std::invalid_argument("Invalid integer");
+    }
+    return Integer(result);
+}
+
+Value* MakeValue(std::string_view operand) {
+
+}
+
 Command MakeCommand(const std::vector<std::string_view>& tokens) {
     if (tokens.size() == 2) {
         if (tokens[0] == "PRINT") {
-            return Command{.type = Command::Type::Print, .var = std::string(tokens[1]), .operand = {}};
+            return Command{.type = Command::Type::Print, .var = std::string(tokens[1]), .operand = nullptr};
         }
     }
     if (tokens.size() == 3) {
@@ -20,13 +36,4 @@ Command MakeCommand(const std::vector<std::string_view>& tokens) {
         }
     }
     throw std::invalid_argument("Invalid syntax");
-}
-
-Integer MakeInteger(std::string_view operand) {
-    int result{};
-    auto [ptr, ec] = std::from_chars(operand.data(), operand.data() + operand.size(), result);
-    if (ec != std::errc()) {
-        throw std::invalid_argument("Invalid integer");
-    }
-    return Integer(result);
 }

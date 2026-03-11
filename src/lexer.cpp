@@ -1,5 +1,7 @@
 #include "lexer.h"
 
+#include <stdexcept>
+
 std::vector<std::string_view> Tokenize(const std::string& line) {
     std::vector<std::string_view> tokens;
     auto first_space = line.find(' ');

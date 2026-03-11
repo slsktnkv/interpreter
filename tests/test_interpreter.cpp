@@ -23,7 +23,7 @@ TEST_CASE("SetAndAdd", "[Interpreter][Add]") {
     REQUIRE(output.str() == "3\n");
 }
 
-/*
+
 TEST_CASE("Strings", "[Interpreter][Add][String]") {
     std::string actual;
     std::ostringstream output(actual);
@@ -34,6 +34,7 @@ TEST_CASE("Strings", "[Interpreter][Add][String]") {
     REQUIRE(output.str() == "aa\n");
 }
 
+/*
 TEST_CASE("StringsMixed", "[Interpreter][Add][String]") {
     std::string actual;
     std::ostringstream output(actual);
